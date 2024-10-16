@@ -37,14 +37,16 @@ if (isset($_POST['insertjobdreamerstudentbtn'])) {
 }
 
 // Handle delete request
-if (isset($_POST['delete-btn'])) {
+if (isset($_POST['id']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+
     if ($id) {
-        deleteJobDreamer($pdo, $id);
-        header("Location: ../sql/tablefordeleteandupdate.php?success=delete");
-        exit;
-    } else {
-        echo "Invalid ID for deletion.";
+        if (deleteJobDreamer($pdo, $id)) {
+            header("Location: ../sql/tablefordeleteandupdate.php?success=delete");
+            exit;
+        } else {
+            echo "Failed to delete the job dreamer.";
+        }
     }
 }
 

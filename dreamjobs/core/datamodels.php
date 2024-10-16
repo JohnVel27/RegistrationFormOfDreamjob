@@ -55,7 +55,7 @@ function updateJobDreamer($pdo, $id, $name, $email, $gender, $dreamjob) {
     }
 }
 
-// delete function (implement as needed)
+// Delete job dreamer by ID
 function deleteJobDreamer($pdo, $id) {
     try {
         $sql = "DELETE FROM jobdreamers WHERE jobdreamerID = :id";
